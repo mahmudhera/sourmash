@@ -15,6 +15,10 @@ in
       openssl
       pkg-config
 
+      llvmPackages.libclang
+      cmake
+      rust-bindgen
+
       git
       stdenv.cc.cc.lib
       (python310.withPackages(ps: with ps; [ virtualenv tox setuptools ]))
