@@ -118,7 +118,7 @@ impl Default for ComputeParameters {
     }
 }
 
-pub fn build_template(params: &ComputeParameters) -> Vec<Sketch> {
+pub fn build_template(params: &ComputeParameters) -> Vec<Box<dyn Sketch>> {
     let max_hash = max_hash_for_scaled(params.scaled);
 
     params
@@ -128,7 +128,7 @@ pub fn build_template(params: &ComputeParameters) -> Vec<Sketch> {
             let mut ksigs = vec![];
 
             if params.protein {
-                ksigs.push(Sketch::LargeMinHash(
+                ksigs.push(Box::new(
                     KmerMinHashBTree::builder()
                         .num(params.num_hashes)
                         .ksize(*k)
@@ -145,7 +145,7 @@ pub fn build_template(params: &ComputeParameters) -> Vec<Sketch> {
             }
 
             if params.dayhoff {
-                ksigs.push(Sketch::LargeMinHash(
+                ksigs.push(Box::new(
                     KmerMinHashBTree::builder()
                         .num(params.num_hashes)
                         .ksize(*k)
@@ -162,7 +162,7 @@ pub fn build_template(params: &ComputeParameters) -> Vec<Sketch> {
             }
 
             if params.hp {
-                ksigs.push(Sketch::LargeMinHash(
+                ksigs.push(Box::new(
                     KmerMinHashBTree::builder()
                         .num(params.num_hashes)
                         .ksize(*k)
@@ -179,7 +179,7 @@ pub fn build_template(params: &ComputeParameters) -> Vec<Sketch> {
             }
 
             if params.dna {
-                ksigs.push(Sketch::LargeMinHash(
+                ksigs.push(Box::new(
                     KmerMinHashBTree::builder()
                         .num(params.num_hashes)
                         .ksize(*k)

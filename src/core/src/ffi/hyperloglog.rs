@@ -3,8 +3,8 @@ use std::os::raw::c_char;
 use std::slice;
 
 use crate::index::sbt::Update;
-use crate::signature::SigsTrait;
 use crate::sketch::hyperloglog::HyperLogLog;
+use crate::sketch::Sketch;
 
 use crate::ffi::minhash::SourmashKmerMinHash;
 use crate::ffi::utils::ForeignObject;

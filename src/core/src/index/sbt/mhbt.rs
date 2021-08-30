@@ -4,7 +4,7 @@ use std::io::Write;
 use crate::index::sbt::{Factory, FromFactory, Node, Update, SBT};
 use crate::index::storage::{ReadData, ReadDataError, ToWriter};
 use crate::index::Comparable;
-use crate::signature::{Signature, SigsTrait};
+use crate::signature::Signature;
 use crate::sketch::nodegraph::Nodegraph;
 use crate::sketch::Sketch;
 use crate::Error;

@@ -4,9 +4,8 @@ use std::slice;
 
 use crate::encodings::{aa_to_dayhoff, aa_to_hp, translate_codon, HashFunctions};
 use crate::ffi::utils::{ForeignObject, SourmashStr};
-use crate::signature::SeqToHashes;
-use crate::signature::SigsTrait;
 use crate::sketch::minhash::KmerMinHash;
+use crate::sketch::{SeqToHashes, Sketch};
 
 pub struct SourmashKmerMinHash;
 

@@ -1,3 +1,4 @@
+use std::any::Any;
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BTreeSet};
 use std::f64::consts::PI;
@@ -13,8 +14,8 @@ use typed_builder::TypedBuilder;
 
 use crate::_hash_murmur;
 use crate::encodings::HashFunctions;
-use crate::signature::SigsTrait;
 use crate::sketch::hyperloglog::HyperLogLog;
+use crate::sketch::Sketch;
 use crate::Error;
 
 pub fn max_hash_for_scaled(scaled: u64) -> u64 {
@@ -790,7 +791,7 @@ impl KmerMinHash {
     }
 }
 
-impl SigsTrait for KmerMinHash {
+impl Sketch for KmerMinHash {
     fn size(&self) -> usize {
         self.mins.len()
     }
@@ -1546,7 +1547,7 @@ impl KmerMinHashBTree {
     }
 }
 
-impl SigsTrait for KmerMinHashBTree {
+impl Sketch for KmerMinHashBTree {
     fn size(&self) -> usize {
         self.mins.len()
     }
@@ -1595,6 +1596,10 @@ impl SigsTrait for KmerMinHashBTree {
             return Err(Error::MismatchSeed);
         }
         Ok(())
+    }
+
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 

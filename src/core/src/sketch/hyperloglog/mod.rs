@@ -17,8 +17,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::encodings::HashFunctions;
 use crate::index::sbt::Update;
-use crate::signature::SigsTrait;
-use crate::sketch::KmerMinHash;
+use crate::sketch::minhash::KmerMinHash;
+use crate::sketch::Sketch;
 use crate::Error;
 use crate::HashIntoType;
 
@@ -160,7 +160,7 @@ impl HyperLogLog {
     }
 }
 
-impl SigsTrait for HyperLogLog {
+impl Sketch for HyperLogLog {
     fn size(&self) -> usize {
         self.registers.len()
     }
